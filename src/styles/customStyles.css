@@ -1,0 +1,128 @@
+.container-main {
+  display: flex;
+}
+
+.sidebar {
+  width: 20%;
+  margin: 0.5rem;
+}
+
+.data-container {
+  width: 80%;
+  margin: 0.5rem 0;
+}
+
+.sidebar,
+.data-container {
+  padding: 0.5rem;
+  border-radius: 10px;
+  box-shadow: 4px 6px 8px rgb(0 0 0 / 30%);
+  height: calc(100vh - 17px);
+  overflow-y: auto;
+}
+
+.data-container ul {
+  padding: 0.25rem;
+  max-height: calc(80vh);
+  overflow-y: auto;
+}
+
+.data-container li {
+  list-style-type: none;
+}
+
+.mt-no-data {
+  margin-top: 5rem;
+}
+
+.no-data {
+  display: block;
+}
+
+.no-data img {
+  width: 100px;
+  height: 100px;
+}
+
+.data-card {
+  display: flex;
+  padding: 0.75rem;
+  margin: 0.25rem;
+  border-radius: 5px;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+  height: auto;
+}
+
+.cBtn-div {
+  margin-top: 0.25rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.month {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.arrow-bns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow-bns span {
+  cursor: pointer;
+}
+
+.arrow-bns .disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.year-row {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.year {
+  display: flex;
+  justify-content: center;
+  padding: 0.25rem;
+  margin: 0 0.25rem;
+  border-radius: 5px;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.year:hover {
+  box-shadow: inset -4px -4px 8px #fff, inset 4px 4px 8px #cccccc;
+}
+
+.year.active {
+  transform: translateY(0.5px);
+  box-shadow: inset -4px -4px 8px #fff, inset 4px 4px 8px #c1c1c1;
+  background-color: #f5fbff;
+  font-weight: 700;
+}
+
+.btn-common {
+  text-align: center;
+  cursor: pointer;
+  width: 4rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-common:active,
+.btn-common:focus {
+  box-shadow: inset -4px -4px 8px #fff, inset 4px 4px 8px #c1c1c1;
+}
