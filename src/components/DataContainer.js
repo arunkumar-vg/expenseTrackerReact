@@ -4,8 +4,7 @@ import { FaTrashAlt } from "react-icons/fa";
 
 const DataContainer = (props) => {
 
-  const { activeYear, activeMonth, data } = props;
-  console.log('hello', data);
+  const { activeYear, activeMonth, data, setModalBox, setExpenseObj } = props;
 
   const monthNames = [
     "January", "February", "March", "April", "May", "June",
@@ -27,19 +26,28 @@ const DataContainer = (props) => {
       <>
         <div className="p-2 font-bold">
           <span className="p-1">{activeYear.year}</span>
-          <span className="p-1">{monthNames[activeMonth.value - 1]}</span>
+          <span className="p-1">{monthNames[activeMonth.monthId - 1]}</span>
         </div>
-        {data && data.expenses.length > 0 ?
+        {data && data.length > 0 ?
           <ul className="d-grid grid-cols-2">
-            {data.expenses.map((item) => {
+            {data.map((item, index) => {
               return (
-                <li className="data-card gap-2" key={item}>
+                <li className="data-card gap-2" key={index}>
                   <span>{item.date} - </span>
                   <span>{formatCurrency(item.amount)} : </span>
                   <span>{item.paidFor}</span>
-                  <span class="d-flex ms-auto cursor-pointer gap-1">
-                    <HiMiniPencil fontSize={14} color="#000000" />
-                    <FaTrashAlt fontSize={14} color="#000000" />
+                  <span className="d-flex ms-auto cursor-pointer gap-2">
+                    <span
+                      onClick={() => {
+                        setExpenseObj(item);
+                        setModalBox(true);
+                      }}
+                    >
+                      <HiMiniPencil fontSize={14} color="#000000" />
+                    </span>
+                    <span>
+                      <FaTrashAlt fontSize={14} color="#000000" />
+                    </span>
                   </span>
                 </li>
               );

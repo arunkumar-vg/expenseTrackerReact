@@ -1,0 +1,60 @@
+{
+  "expenses": [
+    {
+      "id": 1,
+      "year": 2024,
+      "month": 1,
+      "date": "2024-01-10",
+      "amount": "475",
+      "paidFor": "Groceries"
+    },
+    {
+      "year": 2024,
+      "month": 1,
+      "date": "2024-01-15",
+      "amount": 150,
+      "paidFor": "Transport",
+      "id": 2
+    },
+    {
+      "id": 3,
+      "year": 2024,
+      "month": 2,
+      "date": "2024-02-05",
+      "amount": "245",
+      "paidFor": "Others"
+    },
+    {
+      "id": 4,
+      "year": 2024,
+      "month": 3,
+      "date": "2024-03-15",
+      "amount": 4000,
+      "paidFor": "Rent"
+    },
+    {
+      "id": 5,
+      "year": 2024,
+      "month": 11,
+      "date": "2024-11-02",
+      "amount": "4950",
+      "paidFor": "Rent"
+    },
+    {
+      "id": 6,
+      "year": 2024,
+      "month": 11,
+      "date": "2024-11-05",
+      "amount": 463,
+      "paidFor": "Groceries"
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "date": "2024-11-07",
+      "amount": 90,
+      "paidFor": "Saloon",
+      "id": 7
+    }
+  ]
+}
