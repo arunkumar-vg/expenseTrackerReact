@@ -17,18 +17,18 @@ const SideBar = (props) => {
   };
 
   const arrayOfMonths = [
-    { code: 'jan', value: 1, month: 'january' },
-    { code: 'feb', value: 2, month: 'february' },
-    { code: 'mar', value: 3, month: 'march' },
-    { code: 'apr', value: 4, month: 'april' },
-    { code: 'may', value: 5, month: 'may' },
-    { code: 'jun', value: 6, month: 'june' },
-    { code: 'jul', value: 7, month: 'july' },
-    { code: 'aug', value: 8, month: 'augest' },
-    { code: 'sep', value: 9, month: 'september' },
-    { code: 'oct', value: 10, month: 'october' },
-    { code: 'nov', value: 11, month: 'november' },
-    { code: 'dec', value: 12, month: 'december' }
+    { code: 'jan', monthId: 1, month: 'january' },
+    { code: 'feb', monthId: 2, month: 'february' },
+    { code: 'mar', monthId: 3, month: 'march' },
+    { code: 'apr', monthId: 4, month: 'april' },
+    { code: 'may', monthId: 5, month: 'may' },
+    { code: 'jun', monthId: 6, month: 'june' },
+    { code: 'jul', monthId: 7, month: 'july' },
+    { code: 'aug', monthId: 8, month: 'augest' },
+    { code: 'sep', monthId: 9, month: 'september' },
+    { code: 'oct', monthId: 10, month: 'october' },
+    { code: 'nov', monthId: 11, month: 'november' },
+    { code: 'dec', monthId: 12, month: 'december' }
   ];
 
   const updateYears = (value) => {
@@ -86,9 +86,9 @@ const SideBar = (props) => {
       <div className="d-grid grid-cols-3">
         {arrayOfMonths?.map((item) => {
           return (
-            <div className="year-row" key={item.value}>
+            <div className="year-row" key={item.monthId}>
               <span
-                className={(activeMonth.value) === item.value ? 'year active' : 'year'}
+                className={(activeMonth.monthId) === item.monthId ? 'year active' : 'year'}
                 onClick={() => onMonthClick(item)}
               >
                 {item.code.toUpperCase()}
