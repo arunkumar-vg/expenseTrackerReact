@@ -41,20 +41,28 @@
       "paidFor": "Rent"
     },
     {
-      "id": 6,
       "year": 2024,
       "month": 11,
-      "date": "2024-11-05",
-      "amount": 463,
-      "paidFor": "Groceries"
+      "date": "2024-11-04",
+      "amount": 90,
+      "paidFor": "Saloon",
+      "id": 7
     },
     {
       "year": 2024,
       "month": 11,
-      "date": "2024-11-07",
-      "amount": 90,
-      "paidFor": "Saloon",
-      "id": 7
+      "date": "2024-11-04",
+      "amount": 499,
+      "paidFor": "Recharge",
+      "id": 8
+    },
+    {
+      "year": 2024,
+      "month": 11,
+      "date": "2024-11-01",
+      "amount": 857,
+      "paidFor": "Flipkart",
+      "id": 9
     }
   ]
 }

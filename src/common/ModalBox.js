@@ -5,6 +5,7 @@ const ModalBox = ({
   heading,
   children,
   buttonName,
+  closeButton = false,
   closeModal,
   onSave
 }) => {
@@ -27,7 +28,7 @@ const ModalBox = ({
               onClick={closeModal}
               type="submit"
             >
-              Cancel
+              {closeButton ? "No" : "Cancel"}
             </span>
             <span
               className="btn-common"

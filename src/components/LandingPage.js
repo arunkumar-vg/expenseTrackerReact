@@ -10,13 +10,23 @@ const LandingPage = () => {
   const date = new Date();
   const Month = date.getMonth() + 1;
   const Year = date.getFullYear();
+  const initialData = {
+    id: '',
+    year: '',
+    month: '',
+    date: '',
+    amount: '',
+    paidFor: ''
+  }
 
   const [currentYear, setCurrentYear] = useState(Year);
   const [activeYear, setActiveYear] = useState({ year: Year });
   const [activeMonth, setActiveMonth] = useState({ monthId: Month });
   const [data, setData] = useState([]);
   const [modalBox, setModalBox] = useState(false);
-  const [expenseObj, setExpenseObj] = useState({});
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [objId, setObjId] = useState('');
+  const [expenseObj, setExpenseObj] = useState(initialData);
 
   const onYearClick = (year) => setActiveYear(year);
   const onMonthClick = (month) => setActiveMonth(month);
@@ -25,6 +35,32 @@ const LandingPage = () => {
     setActiveMonth({ monthId: Month });
   };
   const updateYear = (value) => setCurrentYear(value);
+
+  const handleChange = (e, field) => {
+    const { value } = e.target;
+    setExpenseObj((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const addData = () => {
+    const payload = {
+      year: activeYear.year,
+      month: activeMonth.monthId,
+      date: expenseObj.date,
+      amount: Number(expenseObj.amount),
+      paidFor: expenseObj.paidFor
+    };
+  
+    axios.post('http://localhost:8246/expenses', payload)
+      .then((response) => {
+        if (response.status === 201) {
+          alert('Data Added');
+          setModalBox(false);
+          setExpenseObj(initialData);
+          reload();
+        }
+      })
+      .catch((err) => console.error("Error adding data:", err));
+  };  
 
   const updateData = () => {
     const payload = {
@@ -42,15 +78,24 @@ const LandingPage = () => {
         if (response.status === 200) {
           alert('Data Updated');
           setModalBox(false);
+          setExpenseObj(initialData);
           reload();
         }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error("Error updating data:", err));
   };
 
-  const handleChange = (e, field) => {
-    const { value } = e.target;
-    setExpenseObj((prev) => ({ ...prev, [field]: value }));
+  const deleteData = () => {
+    axios.delete(`http://localhost:8246/expenses/${objId}`)
+      .then((response) => {
+        if (response.status === 200) {
+          alert('Data Deleted');
+          setDeleteModal(false);
+          setObjId('');
+          reload();
+        }
+      })
+      .catch((err) => console.error("Error deleting data:", err));
   };
 
   const reload = () => {
@@ -59,9 +104,10 @@ const LandingPage = () => {
 
     axios.get(`http://localhost:8246/expenses?year=${year}&month=${monthId}`)
       .then((response) => {
-        setData(response.data);
+        const sortedExpenses = response.data.sort((a, b) => new Date(a.date) - new Date(b.date));
+        setData(sortedExpenses);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error("Error getting data:", err));
   };
 
   useEffect(() => {
@@ -72,10 +118,19 @@ const LandingPage = () => {
     <>
       {modalBox && (
         <ModalBox
-          heading="Edit Expense"
+          heading={expenseObj.id ? "Edit Expense" : "Add Expense"}
           buttonName="Save"
-          closeModal={() => setModalBox(false)}
-          onSave={() => updateData()}
+          closeModal={() => {
+            setModalBox(false);
+            setExpenseObj(initialData);
+          }}
+          onSave={() => {
+            if (expenseObj.id) {
+              updateData();
+            } else {
+              addData();
+            }
+          }}
         >
           <div className="d-grid grid-cols-2 gap-2">
             <InputCommon
@@ -97,6 +152,22 @@ const LandingPage = () => {
           </div>
         </ModalBox>
       )}
+      {deleteModal &&
+        <ModalBox
+          heading="Delete Expense"
+          buttonName="Yes"
+          closeButton
+          closeModal={() => {
+            setDeleteModal(false);
+            setObjId('');
+          }}
+          onSave={() => deleteData()}
+        >
+          <div className="d-flex me-auto">
+            Are you sure you want to delete the expense?
+          </div>
+        </ModalBox>
+      }
       <div className="container-main">
         <div className="sidebar">
           <SideBar
@@ -116,6 +187,8 @@ const LandingPage = () => {
             data={data}
             setModalBox={setModalBox}
             setExpenseObj={setExpenseObj}
+            setDeleteModal={setDeleteModal}
+            setObjId={setObjId}
           />
         </div>
       </div>
