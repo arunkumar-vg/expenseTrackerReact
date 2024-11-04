@@ -141,6 +141,23 @@
   z-index: 1000;
 }
 
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  80% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .modal-container {
   background-color: white;
   min-width: 35vw;
@@ -149,7 +166,7 @@
   padding: 0.5rem;
   border-radius: 8px;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-  animation: fadeIn 0.3s ease-in-out;
+  animation: bounceIn 0.6s ease-out;
   z-index: 1010;
 }
 
@@ -164,7 +181,7 @@
 .modal-body {
   padding: 15px;
   overflow-y: auto;
-  min-height: 100px;
+  min-height: 50px;
   max-height: 400px;
 }
 

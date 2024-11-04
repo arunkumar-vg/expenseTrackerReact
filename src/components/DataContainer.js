@@ -4,7 +4,7 @@ import { FaTrashAlt } from "react-icons/fa";
 
 const DataContainer = (props) => {
 
-  const { activeYear, activeMonth, data, setModalBox, setExpenseObj } = props;
+  const { activeYear, activeMonth, data, setModalBox, setExpenseObj, setDeleteModal, setObjId } = props;
 
   const monthNames = [
     "January", "February", "March", "April", "May", "June",
@@ -28,6 +28,12 @@ const DataContainer = (props) => {
           <span className="p-1">{activeYear.year}</span>
           <span className="p-1">{monthNames[activeMonth.monthId - 1]}</span>
         </div>
+        <span
+          className="d-flex align-items-center btn-common ms-auto w-6 me-2 gap-1"
+          onClick={() => setModalBox(true)}
+        >
+          Add Expense
+        </span>
         {data && data.length > 0 ?
           <ul className="d-grid grid-cols-2">
             {data.map((item, index) => {
@@ -45,7 +51,12 @@ const DataContainer = (props) => {
                     >
                       <HiMiniPencil fontSize={14} color="#000000" />
                     </span>
-                    <span>
+                    <span
+                      onClick={() => {
+                        setDeleteModal(true);
+                        setObjId(item.id);
+                      }}
+                    >
                       <FaTrashAlt fontSize={14} color="#000000" />
                     </span>
                   </span>
