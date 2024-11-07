@@ -54,7 +54,6 @@ const LandingPage = () => {
     axios.post('http://localhost:8246/expenses', payload)
       .then((response) => {
         if (response.status === 201) {
-          alert('Data Added');
           setModalBox(false);
           setExpenseObj(initialData);
           reload();
@@ -77,7 +76,6 @@ const LandingPage = () => {
     axios.put(`http://localhost:8246/expenses/${id}`, payload)
       .then((response) => {
         if (response.status === 200) {
-          alert('Data Updated');
           setModalBox(false);
           setExpenseObj(initialData);
           reload();
@@ -90,7 +88,6 @@ const LandingPage = () => {
     axios.delete(`http://localhost:8246/expenses/${objId}`)
       .then((response) => {
         if (response.status === 200) {
-          alert('Data Deleted');
           setDeleteModal(false);
           setObjId('');
           reload();
