@@ -2,6 +2,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { setYear, setMonth, resetDate } from '../states/dateSlice';
 import DataContainer from './DataContainer.js';
 import SideBar from './SideBar.js';
 import ModalBox from "../common/ModalBox";
@@ -9,7 +11,6 @@ import InputCommon from '../common/InputField';
 
 const LandingPage = () => {
   const date = new Date();
-  const Month = date.getMonth() + 1;
   const Year = date.getFullYear();
   const initialData = {
     id: '',
@@ -19,21 +20,20 @@ const LandingPage = () => {
     amount: '',
     paidFor: ''
   }
-
+  const dispatch = useDispatch();
   const [currentYear, setCurrentYear] = useState(Year);
-  const [activeYear, setActiveYear] = useState({ year: Year });
-  const [activeMonth, setActiveMonth] = useState({ monthId: Month });
+  const activeYear = useSelector((state) => state.date.activeYear);
+  const activeMonth = useSelector((state) => state.date.activeMonth);
   const [data, setData] = useState([]);
   const [modalBox, setModalBox] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [objId, setObjId] = useState('');
   const [expenseObj, setExpenseObj] = useState(initialData);
 
-  const onYearClick = (year) => setActiveYear(year);
-  const onMonthClick = (month) => setActiveMonth(month);
+  const onYearClick = (year) => dispatch(setYear(year));
+  const onMonthClick = (month) => dispatch(setMonth(month));
   const reset = () => {
-    setActiveYear({ year: Year });
-    setActiveMonth({ monthId: Month });
+    dispatch(resetDate());
   };
   const updateYear = (value) => setCurrentYear(value);
 
