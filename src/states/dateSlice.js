@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const date = new Date();
 const initialState = {
-  activeYear: date.getFullYear(),
-  activeMonth: date.getMonth() + 1,
+  activeYear: { year: date.getFullYear() },
+  activeMonth: { monthId: date.getMonth() + 1 },
 };
 
 const dateSlice = createSlice({
@@ -17,8 +17,8 @@ const dateSlice = createSlice({
       state.activeMonth = action.payload;
     },
     resetDate: (state) => {
-      state.activeYear = date.getFullYear();
-      state.activeMonth = date.getMonth() + 1;
+      state.activeYear = { year: date.getFullYear() };
+      state.activeMonth = { monthId: date.getMonth() + 1 };
     },
   },
 });
