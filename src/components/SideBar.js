@@ -73,7 +73,7 @@ const SideBar = (props) => {
           return (
             <div className="year-row" key={item.year}>
               <span
-                className={(activeYear.year) === item.year ? 'year active' : 'year'}
+                className={activeYear.year === item.year ? 'year active' : 'year'}
                 onClick={() => onYearClick(item)}
               >
                 {item.year}
@@ -88,7 +88,7 @@ const SideBar = (props) => {
           return (
             <div className="year-row" key={item.monthId}>
               <span
-                className={(activeMonth.monthId) === item.monthId ? 'year active' : 'year'}
+                className={activeMonth.monthId === item.monthId ? 'year active' : 'year'}
                 onClick={() => onMonthClick(item)}
               >
                 {item.code.toUpperCase()}
